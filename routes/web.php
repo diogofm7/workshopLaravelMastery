@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\{EventsController};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +27,6 @@ Route::get('events/{slug}', function ($slug){
     return '<h1>Evento: ' . $slug . '</h1>';
 });*/
 
-Route::get('events', [\App\Http\Controllers\EventsController::class, 'index']);
+Route::get('events', [EventsController::class, 'index']);
 
-Route::get('event/{event}', [\App\Http\Controllers\EventsController::class, 'show']);
+Route::get('event/{event}', [EventsController::class, 'show']);
