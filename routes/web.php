@@ -27,6 +27,10 @@ Route::get('events/{slug}', function ($slug){
     return '<h1>Evento: ' . $slug . '</h1>';
 });*/
 
-Route::get('events', [EventsController::class, 'index']);
+Route::prefix('events')->name('event.')->group(function () {
 
-Route::get('event/{event}', [EventsController::class, 'show']);
+    Route::get('/', [EventsController::class, 'index'])->name('index');
+
+    Route::get('/{event}', [EventsController::class, 'show'])->name('show');
+
+});
