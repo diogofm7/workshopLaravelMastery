@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\{EventsController};
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,18 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*Route::get('events', function (){
-    return '<h1>Lista de Eventos</h1>';
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('events/{slug}', function ($slug){
-    return '<h1>Evento: ' . $slug . '</h1>';
-});*/
-
-Route::prefix('events')->name('event.')->group(function () {
-
-    Route::get('/', [EventsController::class, 'index'])->name('index');
-
-    Route::get('/{event}', [EventsController::class, 'show'])->name('show');
-
-});
+require __DIR__.'/auth.php';
